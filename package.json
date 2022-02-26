@@ -14,7 +14,16 @@
     "format:list": "prettier --ignore-path .gitignore \"**/*.+(js|jsx|ts|tsx)\" --list-different",
     "test": "mocha --exit"
   },
-  "keywords": [],
+  "keywords": [
+    "express",
+    "API",
+    "Typescript",
+    "Javascript",
+    "API template",
+    "API starter",
+    "REST API",
+    "RESTful API"
+  ],
   "author": "Ownchoice (https://github.com/ownchoice)",
   "contributors": [
     "CJ R. <cj@null.computer> (https://w3cj.now.sh)"
