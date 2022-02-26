@@ -21,6 +21,12 @@ app.get('/', (_req: Request, res: Response) => {
   })
 })
 
+app.get('/api/', (_req: Request, res: Response) => {
+  res.json({
+    versions: ['v1'],
+  })
+})
+
 app.use('/api/v1', api)
 
 app.use(middlewares.notFound)
