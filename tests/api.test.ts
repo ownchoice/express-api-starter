@@ -44,7 +44,7 @@ describe('GET /api/v1/posts/1/comments', () => {
       .get('/api/v1/posts/1/comments')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
-      .expect(200, posts.find((post) => post.id === 1).comments, done)
+      .expect(200, posts.find((post) => post.id === 1)?.comments, done)
   })
 })
 
@@ -58,7 +58,7 @@ describe('POST /api/v1/posts', () => {
     request(app)
       .post('/api/v1/posts')
       .set('Accept', 'application/json')
-      .send()
+      .send(newPost)
       .expect('Content-Type', /json/)
       .expect(200, posts, done)
   })
