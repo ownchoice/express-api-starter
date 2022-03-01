@@ -1,5 +1,7 @@
 # Express API Starter
 
+[w3cj/express-api-starter](https://github.com/w3cj/express-api-starter) was used as a starting point.
+
 Includes API Server utilities:
 
 * [morgan](https://www.npmjs.com/package/morgan)
@@ -11,8 +13,8 @@ Includes API Server utilities:
 
 Development utilities:
 
-* [nodemon](https://www.npmjs.com/package/nodemon)
-  * nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
+* [ts-node-dev](https://www.npmjs.com/package/ts-node-dev)
+  * ts-node-dev is a development tool for Node.js (+ TypeScript) that automatically restarts the node process when a file is modified.
 * [eslint](https://www.npmjs.com/package/eslint)
   * ESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
 * [mocha](https://www.npmjs.com/package/mocha)
@@ -22,24 +24,24 @@ Development utilities:
 
 ## Setup
 
-```
+```console
 npm install
 ```
 
 ## Lint
 
-```
+```console
 npm run lint
 ```
 
 ## Test
 
-```
+```console
 npm run test
 ```
 
 ## Development
 
-```
+```console
 npm run dev
 ```
