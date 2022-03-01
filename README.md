@@ -1,6 +1,6 @@
 # Express API Starter
 
-[w3cj/express-api-starter](https://github.com/w3cj/express-api-starter) was used as a starting point.
+[w3cj/express-api-starter](https://github.com/w3cj/express-api-starter) was used as the starting point.
 
 Includes API Server utilities:
 
