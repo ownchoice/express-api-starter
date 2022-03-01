@@ -21,6 +21,10 @@ const isString = (text: unknown): text is string => {
   return typeof text === 'string' || text instanceof String
 }
 
+const isNumber = (text: unknown): text is number => {
+  return typeof text === 'number' || text instanceof Number
+}
+
 const parseString = (param: unknown, paramName: string): string => {
   if (!param || !isString(param)) {
     throw new Error(`Incorrect or missing ${paramName}`)
@@ -37,8 +41,8 @@ const parseEmail = (param: unknown, paramName: string): string => {
   return param
 }
 
-const isValidInteger = (text: unknown): text is string => {
-  return isString(text) && Boolean(Number.parseInt(text))
+const isValidInteger = (text: unknown): text is number => {
+  return (isString(text) && Boolean(Number.parseInt(text))) || isNumber(text)
 }
 
 const parseInteger = (param: unknown, paramName: string): number => {
@@ -46,7 +50,11 @@ const parseInteger = (param: unknown, paramName: string): number => {
     throw new Error(`Incorrect or missing ${paramName}`)
   }
 
-  return Number.parseInt(param)
+  if (isString(param)) {
+    return Number.parseInt(param)
+  }
+
+  return param
 }
 
 // const isDate = (date: string): boolean => {

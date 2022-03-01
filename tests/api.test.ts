@@ -1,6 +1,8 @@
 import request from 'supertest'
 import app from '../src/app'
+import { assert } from 'chai'
 import { posts } from '../data/example-data'
+import { Post } from '../src/types'
 
 describe('GET /api/v1', () => {
   it('responds with a json message', (done) => {
@@ -49,17 +51,20 @@ describe('GET /api/v1/posts/1/comments', () => {
 })
 
 describe('POST /api/v1/posts', () => {
-  it('adds a new post', (done) => {
+  it('adds a new post', async () => {
     const newPost = {
       userId: 10,
       title: 'laboriosam dolor voluptates',
       body: 'doloremque ex facilis sit sint culpa\nsoluta assumenda eligendi non ut eius\nsequi ducimus vel quasi\nveritatis est dolores',
     }
-    request(app)
+    const response = await request(app)
       .post('/api/v1/posts')
-      .set('Accept', 'application/json')
       .send(newPost)
+      .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
-      .expect(200, posts, done)
+      .expect(200)
+
+    const { id, ...responsePostWithoutId } = <Post>response.body
+    assert.deepEqual(responsePostWithoutId, { ...newPost, comments: [] })
   })
 })
