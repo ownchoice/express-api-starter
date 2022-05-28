@@ -3,10 +3,11 @@ import app from '../src/app'
 import { assert } from 'chai'
 import { posts } from '../data/example-data'
 import { Post } from '../src/types'
+import { describe, it } from 'mocha'
 
 describe('GET /api/v1', () => {
-  it('responds with a json message', (done) => {
-    request(app)
+  it('responds with a json message', async (done) => {
+    await request(app)
       .get('/api/v1')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
@@ -21,8 +22,8 @@ describe('GET /api/v1', () => {
 })
 
 describe('GET /api/v1/emojis', () => {
-  it('responds with a json message', (done) => {
-    request(app)
+  it('responds with a json message', async (done) => {
+    await request(app)
       .get('/api/v1/emojis')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
@@ -31,8 +32,8 @@ describe('GET /api/v1/emojis', () => {
 })
 
 describe('GET /api/v1/posts', () => {
-  it('returns all posts with their comments', (done) => {
-    request(app)
+  it('returns all posts with their comments', async (done) => {
+    await request(app)
       .get('/api/v1/posts')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
@@ -41,8 +42,8 @@ describe('GET /api/v1/posts', () => {
 })
 
 describe('GET /api/v1/posts/1/comments', () => {
-  it('returns all comments for the post with id 1', (done) => {
-    request(app)
+  it('returns all comments for the post with id 1', async (done) => {
+    await request(app)
       .get('/api/v1/posts/1/comments')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
@@ -64,7 +65,7 @@ describe('POST /api/v1/posts', () => {
       .expect('Content-Type', /json/)
       .expect(200)
 
-    const { id, ...responsePostWithoutId } = <Post>response.body
+    const { id: _id, ...responsePostWithoutId } = <Post>response.body
     assert.deepEqual(responsePostWithoutId, { ...newPost, comments: [] })
   })
 })

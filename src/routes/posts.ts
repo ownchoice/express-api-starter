@@ -2,7 +2,7 @@
 
 import express from 'express'
 import postService from '../services/postService'
-import { toNewPost, toNewComment } from '../utils'
+import { toNewPost, toNewComment, PostFields, CommentFields } from '../utils'
 
 const router = express.Router()
 
@@ -11,7 +11,7 @@ router.get('/', (_req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  const post = postService.findPostById(Number.parseInt(req.params.id))
+  const post = postService.findPostById(Number.parseInt(req.params.id, 10))
 
   if (post) {
     res.send(post)
@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   try {
-    const newPost = toNewPost(req.body)
+    const newPost = toNewPost(req.body as PostFields)
     const addedPost = postService.addPost(newPost)
     res.json(addedPost)
   } catch (e: unknown) {
@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
 })
 
 router.get('/:id/comments', (req, res) => {
-  const post = postService.findPostById(Number.parseInt(req.params.id))
+  const post = postService.findPostById(Number.parseInt(req.params.id, 10))
 
   if (post) {
     res.send(post.comments)
@@ -44,9 +44,9 @@ router.get('/:id/comments', (req, res) => {
 
 router.post('/:id/comments', (req, res) => {
   try {
-    const newComment = toNewComment(req.body)
+    const newComment = toNewComment(req.body as CommentFields)
     const updatedPost = postService.addPostComment(
-      Number.parseInt(req.params.id),
+      Number.parseInt(req.params.id, 10),
       newComment
     )
     res.json(updatedPost)

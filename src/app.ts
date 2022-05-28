@@ -1,9 +1,8 @@
+import 'dotenv/config' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 import express, { Request, Response } from 'express'
 import morgan from 'morgan'
 import helmet from 'helmet'
 import cors from 'cors'
-
-require('dotenv').config()
 
 import middlewares from './middlewares'
 import api from './routes'

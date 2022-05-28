@@ -1,5 +1,15 @@
+# content
+# static
 .cache
-package.json
-package-lock.json
-coverage
+.eslintrc
+.eslintrc.js
+.next
+astro.config.mjs
 build
+coverage
+dist
+package-lock.json
+package.json
+postcss.config.cjs
+public
+yarn.lock

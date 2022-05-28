@@ -8,7 +8,7 @@ import {
 import { Post, Comment, PostWithoutId, CommentWithoutId } from '../types'
 
 let posts: Post[] = importedPosts
-let comments: Comment[] = importedComments
+const comments: Comment[] = importedComments
 
 const getPosts = (): Post[] => {
   return posts
@@ -31,23 +31,21 @@ const addPostComment = (
   comment: CommentWithoutId
 ): Post | undefined => {
   const commentId: number = comments.slice(-1)[0].id + 1
-  const post = posts.find((d) => d.id === postId)
-  if (post) {
+  const existingPost = posts.find((d) => d.id === postId)
+  if (existingPost) {
     posts = posts.map((post) => {
       if (post.id === postId) {
         return {
           ...post,
           comments: post.comments.concat({ id: commentId, ...comment }),
         }
-      } else {
-        return post
       }
+      return post
     })
 
     return posts.find((d) => d.id === postId)
-  } else {
-    return undefined
   }
+  return undefined
 }
 
 export default {

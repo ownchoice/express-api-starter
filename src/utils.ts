@@ -3,14 +3,14 @@
 import validator from 'validator'
 import { Comment, CommentWithoutId, PostWithoutId } from './types'
 
-interface PostFields {
+export interface PostFields {
   userId: unknown
   title: unknown
   body: unknown
   comments: unknown
 }
 
-interface CommentFields {
+export interface CommentFields {
   postId: unknown
   name: unknown
   email: unknown
@@ -42,7 +42,9 @@ const parseEmail = (param: unknown, paramName: string): string => {
 }
 
 const isValidInteger = (text: unknown): text is number => {
-  return (isString(text) && Boolean(Number.parseInt(text))) || isNumber(text)
+  return (
+    (isString(text) && Boolean(Number.parseInt(text, 10))) || isNumber(text)
+  )
 }
 
 const parseInteger = (param: unknown, paramName: string): number => {
@@ -51,7 +53,7 @@ const parseInteger = (param: unknown, paramName: string): number => {
   }
 
   if (isString(param)) {
-    return Number.parseInt(param)
+    return Number.parseInt(param, 10)
   }
 
   return param
